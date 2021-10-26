@@ -64,7 +64,7 @@ if (category === 'B') {
             const result = arr.map(letter => {
                 if (char.toLowerCase() === letter.toLowerCase()) {
                     rightChar = true;
-                    return ` ${letter} `
+                    return ` ${letter.} `
                 } else if (letter !== ' ') {
                     return ' _ '
                 } else return '-'
