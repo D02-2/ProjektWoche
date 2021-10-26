@@ -28,6 +28,7 @@ const gamerName  = prompt('Wie heißt du? ')
 console.clear();
 
 const category = prompt(`Hallo ${gamerName} Welche Kategorie möchtest du spielen (Bücher oder Filme (B / F))? `);
+console.clear();
 
 // function validationCat() {  return B oder F} 
 
