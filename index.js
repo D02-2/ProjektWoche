@@ -37,3 +37,15 @@ if (category === 'B') {
 
     // function selectTitle()
 }
+function selectTitle(){
+    const quizBookArray = Array.from(quizBook)
+    const result=quizBookArray.map((letter) => {
+        if(letter !== ' '){
+            return letter.replace(letter,' _ ')
+        }else{
+            return '-'
+        }
+    })
+    return result
+}
+console.log(result);
