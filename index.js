@@ -6,11 +6,14 @@ const quizFilm = films[Math.round(Math.random() * 9)];
 const books = ['Das Tagebuch der Anne Frank', 'Der Kleine Prinz', 'Das Geisterhaus', 'Der Graf von Monte Christo', 'Der kleine Hobbit', 'Der Glöckner von Notre-Dame', 'Gullivers Reisen', 'Der Krieg der Welten', 'Auf der Suche nach der verlorenen Zeit', 'Herr der Fliegen'];
 
 
- // console.log(quizBook);
- // console.log(Math.round(Math.random() * 9));
+// console.log(quizBook);
+// console.log(Math.round(Math.random() * 9));
 
 
-const emoji = `  ¯\_(:/)_/¯`;
+
+const emoji = `¯\\_(:/)_/¯`;
+
+const emojiArr = ['¯', '\\', '_', '(', ':', '/', ')', '_', '/', '¯']
 
 
 let playRounds = 0;
@@ -20,28 +23,30 @@ let lostRounds = 0;
 //..........................
 //..........................
 console.clear();
+console.log(emojiArr);
 console.log(`
 Willkommen zu Shrugman
 
     ${emoji}
                         `);
-const gamerName  = prompt('Wie heißt du? ')
+const gamerName = prompt('Wie heißt du? ')
 console.clear();
 
 const category = prompt(`Hallo ${gamerName} Welche Kategorie möchtest du spielen (Bücher oder Filme (B / F))? `);
+console.clear();
 
 // function validationCat() {  return B oder F} 
 
 if (category === 'B') {
     const quizBook = books[Math.round(Math.random() * 9)];
-    
+
     const quizBookArray = Array.from(quizBook)
-    function selectTitle(){
-        
+    const selectTitle = () => {
+
         const result = quizBookArray.map((letter) => {
-            if(letter !== ' '){
-                return letter.replace(letter,' _ ')
-            }else{
+            if (letter !== ' ') {
+                return letter.replace(letter, ' _ ')
+            } else {
                 return '-'
             }
         }).join('');
@@ -49,23 +54,46 @@ if (category === 'B') {
     }
     console.clear();
     console.log(selectTitle());
-    const guessLetter = prompt('Bitte gib einen Buchstaben ein ');
-    function searchLetter(arr, char) {
-        const result = arr.map(letter => {
-            if (char.toLowerCase() === letter.toLowerCase()) {
+    let resultArr = selectTitle();
+    
+    while (emojiArr.length <= 10) {
+        const guessLetter = prompt('Bitte gib einen Buchstaben ein ');
+       
+        function searchLetter(arr, char) {
+            let rightChar = false;
+            const result = arr.map(letter => {
+                if (char.toLowerCase() === letter.toLowerCase()) {
+                    rightChar = true;
+                    return ` ${letter} `
+                } else if (letter !== ' ') {
+                    return ' _ '
+                } else return '-'
+
+            })
+            if (!rightChar) {
+                // function emojiBuild() return
+            }
+            for (let i = 0; i < result.length; i++) {
+                if (resultArr[i] !== result[i] && resultArr[i] === ' _ ') {
+                    resultArr[i] = result[i]
+                    console.log('...', resultArr[i]);
+                }
                 
-                return ` ${letter} `
-            } else if (letter !== ' ') {
-                return ' _ '
-            } else return '-'
+            }
+            // resultArr = [...result];
+            console.log(result);
             
-        })      
-        return result.join('');
-    } 
-    console.clear();
-    console.log(searchLetter(quizBookArray, guessLetter));  
-    console.log(quizBookArray.join(''));
+            return resultArr;
+        }
+        // console.clear();
+        console.log(searchLetter(quizBookArray, guessLetter));
+        console.log(quizBookArray.join(''));
+    }
 }
+
+
+
+
 
 
 
