@@ -23,7 +23,7 @@ let lostRounds = 0;
 //..........................
 //..........................
 console.clear();
-console.log(emojiArr);
+
 console.log(`
 Willkommen zu Shrugman
 
@@ -49,11 +49,11 @@ if (category === 'B') {
             } else {
                 return '-'
             }
-        }).join('');
+        });
         return result
     }
     console.clear();
-    console.log(selectTitle());
+    console.log(selectTitle().join(''));
     let resultArr = selectTitle();
     
     while (emojiArr.length <= 10) {
@@ -72,24 +72,29 @@ if (category === 'B') {
             })
             if (!rightChar) {
                 // function emojiBuild() return
+
             }
             for (let i = 0; i < result.length; i++) {
                 if (resultArr[i] !== result[i] && resultArr[i] === ' _ ') {
                     resultArr[i] = result[i]
-                    console.log('...', resultArr[i]);
+                   
                 }
                 
             }
-            // resultArr = [...result];
-            console.log(result);
-            
+                       
             return resultArr;
         }
-        // console.clear();
-        console.log(searchLetter(quizBookArray, guessLetter));
+         console.clear();
+        console.log(searchLetter(quizBookArray, guessLetter).join(''));
         console.log(quizBookArray.join(''));
     }
 }
+
+
+
+
+
+
 
 
 
