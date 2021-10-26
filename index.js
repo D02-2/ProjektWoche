@@ -23,7 +23,7 @@ let lostRounds = 0;
 //..........................
 //..........................
 console.clear();
-console.log(emojiArr);
+
 console.log(`
 Willkommen zu Shrugman
 
@@ -47,18 +47,20 @@ if (category === 'B') {
             if (letter !== ' ') {
                 return letter.replace(letter, ' _ ')
             } else {
-                return '-'
+                return ' - '
             }
-        }).join('');
+        });
         return result
     }
     console.clear();
-    console.log(selectTitle());
+    console.log(selectTitle().join(''));
     let resultArr = selectTitle();
+    let emojiResultArr = [];
+    const quizBookWithSpace = quizBook.replaceAll(' ', '-').split('').map(char => ` ${char} `);
     
-    while (emojiArr.length <= 10) {
+    while (emojiResultArr.length < 10 && resultArr.join('') !== quizBookWithSpace.join('')) {
         const guessLetter = prompt('Bitte gib einen Buchstaben ein ');
-       
+
         function searchLetter(arr, char) {
             let rightChar = false;
             const result = arr.map(letter => {
@@ -71,25 +73,43 @@ if (category === 'B') {
 
             })
             if (!rightChar) {
-                // function emojiBuild() return
+
+                emojiResultArr.push(emojiArr[emojiResultArr.length]);
+
             }
+            console.log(emojiResultArr.join(''));
+           
             for (let i = 0; i < result.length; i++) {
                 if (resultArr[i] !== result[i] && resultArr[i] === ' _ ') {
                     resultArr[i] = result[i]
-                    console.log('...', resultArr[i]);
+
                 }
-                
+
             }
-            // resultArr = [...result];
-            console.log(result);
-            
+
             return resultArr;
         }
-        // console.clear();
-        console.log(searchLetter(quizBookArray, guessLetter));
+        console.clear();
+        console.log(searchLetter(quizBookArray, guessLetter).join(''));
         console.log(quizBookArray.join(''));
     }
+
+    if (resultArr.join('') === quizBookWithSpace.join('')) {
+        console.log('you are the winner');
+    } else console.log('game over')
+    
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
