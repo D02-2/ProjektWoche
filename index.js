@@ -10,7 +10,8 @@ const books = ['Das Tagebuch der Anne Frank', 'Der Kleine Prinz', 'Das Geisterha
  // console.log(Math.round(Math.random() * 9));
 
 
-const emoji = `¯\\\_(:/)_/¯`;
+const emoji = `  ¯\_(:/)_/¯`;
+
 
 let playRounds = 0;
 let winRounds = 0;
@@ -52,6 +53,7 @@ if (category === 'B') {
     function searchLetter(arr, char) {
         const result = arr.map(letter => {
             if (char.toLowerCase() === letter.toLowerCase()) {
+                
                 return ` ${letter} `
             } else if (letter !== ' ') {
                 return ' _ '
@@ -64,4 +66,6 @@ if (category === 'B') {
     console.log(searchLetter(quizBookArray, guessLetter));  
     console.log(quizBookArray.join(''));
 }
+
+
 
