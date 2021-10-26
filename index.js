@@ -33,19 +33,35 @@ const category = prompt(`Hallo ${gamerName} Welche Kategorie möchtest du spiele
 
 if (category === 'B') {
     const quizBook = books[Math.round(Math.random() * 9)];
-    console.log(quizBook);
-
-    // function selectTitle()
-}
-function selectTitle(){
+    
     const quizBookArray = Array.from(quizBook)
-    const result=quizBookArray.map((letter) => {
-        if(letter !== ' '){
-            return letter.replace(letter,' _ ')
-        }else{
-            return '-'
-        }
-    })
-    return result
+    function selectTitle(){
+        
+        const result = quizBookArray.map((letter) => {
+            if(letter !== ' '){
+                return letter.replace(letter,' _ ')
+            }else{
+                return '-'
+            }
+        }).join('');
+        return result
+    }
+    console.clear();
+    console.log(selectTitle());
+    const guessLetter = prompt('Bitte gib einen Buchstaben ein ');
+    function searchLetter(arr, char) {
+        const result = arr.map(letter => {
+            if (char.toLowerCase() === letter.toLowerCase()) {
+                return ` ${letter} `
+            } else if (letter !== ' ') {
+                return ' _ '
+            } else return '-'
+            
+        })      
+        return result.join('');
+    } 
+    console.clear();
+    console.log(searchLetter(quizBookArray, guessLetter));  
+    console.log(quizBookArray.join(''));
 }
-console.log(result);
+
