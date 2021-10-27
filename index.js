@@ -36,9 +36,7 @@ const emoji = `¯\\_(:/)_/¯`;
 
 const emojiArr = ["¯", "\\", "_", "(", ":", "/", ")", "_", "/", "¯"];
 
-let playRounds = 0;
-let winRounds = 0;
-let lostRounds = 0;
+
 const b = chalk.green.bold`B`;
 const f = chalk.green.bold`F`;
 
@@ -60,115 +58,153 @@ console.log(chalk.magenta.bold`${emoji} `);
 const gamerName = prompt(chalk.green.bold`Wie heißt du? `);
 console.clear();
 
-/* const category = prompt(chalk.cyan.bold`     
-Hallo ${gamerName}
-      welche Kategorie möchtest du spielen Bücher oder Filme (${b} / ${f})? `); */
+let playAgain = 'j';
 
-console.log(chalk.cyan.bold` Hallo ${gamerName} `);
-const category = prompt(
-  chalk.cyan
-    .bold`welche Kategorie möchtest du spielen: Bücher oder Filme (${b} / ${f})? `
-);
-console.clear();
+let winRounds = 0;
+let loseRounds = 0;
 
-// function validationCat() {  return B oder F}
 
-if (category === "B") {
-  const quizBook = books[Math.round(Math.random() * 9)];
+while (playAgain === 'j') {
+    console.log('playAgain Anfang', playAgain);
 
-  const quizBookArray = Array.from(quizBook);
-  const selectTitle = () => {
-    const result = quizBookArray.map((letter) => {
-      if (letter !== " ") {
-        return letter.replace(letter, " _ ");
-      } else {
-        // return ' - '
-        return "   ";
-      }
-    });
-    return result;
-  };
-  console.clear();
-  console.log("   ");
-  console.log("  ");
-  console.log("   ");
-  console.log("  ");
-  console.log("  ");
-  console.log(chalk.cyan.bold`${selectTitle().join("")}`);
-  let resultArr = selectTitle();
-  let emojiResultArr = [];
-  // const quizBookWithSpace = quizBook.replaceAll(' ', '-').split('').map(char => ` ${char} `);
-  const quizBookWithSpace = quizBook.split("").map((char) => ` ${char} `);
 
-  while (
-    emojiResultArr.length < 10 &&
-    resultArr.join("") !== quizBookWithSpace.join("")
-  ) {
-    console.log("   ");
-    const guessLetter = prompt(
-      chalk.green.bold`          Bitte gib einen Buchstaben ein `
-    );
-
-    function searchLetter(arr, char) {
-      let rightChar = false;
-      const result = arr.map((letter) => {
-        if (char.toLowerCase() === letter.toLowerCase()) {
-          rightChar = true;
-          return ` ${letter} `;
-        } else if (letter !== " ") {
-          return " _ ";
-          // else return '-'
-        } else return " ";
-      });
-      if (!rightChar) {
-        emojiResultArr.push(emojiArr[emojiResultArr.length]);
-      }
-      console.log(
-        chalk.magenta.bold`${emojiResultArr.join("")}`
-      );
-      console.log("     ");
-
-      for (let i = 0; i < result.length; i++) {
-        if (resultArr[i] !== result[i] && resultArr[i] === " _ ") {
-          resultArr[i] = result[i];
-        }
-      }
-
-      return resultArr;
-    }
+    console.log(chalk.cyan.bold`
+                                   Hallo ${gamerName}
+                                                     `);
+    const category = prompt(chalk.cyan.bold`           welche Kategorie möchtest du spielen: Bücher oder Filme (${b} / ${f})? `);
     console.clear();
-    console.log("        ");
-    console.log("        ");
-    console.log("        ");
-    console.log(
-      chalk.cyan.bold`${searchLetter(quizBookArray, guessLetter).join( )}`
-    );
-    // console.log(searchLetter(quizBookArray, guessLetter).join(''));
-    // console.log(quizBookArray.join(''));
-  }
 
-  if (resultArr.join("") === quizBookWithSpace.join("")) {
-    console.log(chalk.green.bold`
+    // function validationCat() {  return B oder F} 
+
+    if (category === 'B') {
+        const quizBook = books[Math.round(Math.random() * 9)];
+
+        const quizBookArray = Array.from(quizBook)
+        const selectTitle = () => {
+
+            const result = quizBookArray.map((letter) => {
+                if (letter !== ' ') {
+                    return letter.replace(letter, ' _ ')
+                } else {
+                    // return ' - '
+                    return '   '
+                }
+            });
+            return result
+        }
+        console.clear();
+        console.log('   ');
+        console.log('  ');
+        console.log('   ');
+        console.log('  ');
+        console.log('  ');
+        console.log(chalk.cyan.bold`          ${selectTitle().join('')}`);
+        let resultArr = selectTitle();
+        let emojiResultArr = [];
+        // const quizBookWithSpace = quizBook.replaceAll(' ', '-').split('').map(char => ` ${char} `);
+        const quizBookWithSpace = quizBook.split('').map(char => ` ${char} `);
+
+        while (emojiResultArr.length < 10 && resultArr.join('') !== quizBookWithSpace.join('')) {
+
+            console.log('   ');
+            const guessLetter = prompt(chalk.green.bold`          Bitte gib einen Buchstaben ein `);
+
+            function searchLetter(arr, char) {
+                let rightChar = false;
+                const result = arr.map(letter => {
+                    if (char.toLowerCase() === letter.toLowerCase()) {
+                        rightChar = true;
+                        return ` ${letter} `
+                    } else if (letter !== ' ') {
+                        return ' _ '
+                        // else return '-'
+                    } else return ' '
+
+                })
+                if (!rightChar) {
+
+                    emojiResultArr.push(emojiArr[emojiResultArr.length]);
+
+                }
+                console.log(chalk.magenta.bold`                       ${emojiResultArr.join('')}`);
+                console.log('     ');
+
+                for (let i = 0; i < result.length; i++) {
+                    if (resultArr[i] !== result[i] && resultArr[i] === ' _ ') {
+                        resultArr[i] = result[i]
+
+                    }
+
+                }
+
+                return resultArr;
+            }
+            console.clear();
+            console.log('        ');
+            console.log('        ');
+            console.log('        ');
+            console.log(chalk.cyan.bold`          ${searchLetter(quizBookArray, guessLetter).join('')}`);
+            // console.log(searchLetter(quizBookArray, guessLetter).join(''));
+            // console.log(quizBookArray.join(''));
+        }
+
+        if (resultArr.join('') === quizBookWithSpace.join('')) {
+            winRounds++
+            console.log(chalk.green.bold`
                 。　☆ 。　　☆。　　☆ 
               ★。　＼　　｜　　／。　★`);
-    console.log(chalk.magenta.bold`
+            console.log(chalk.magenta.bold`
                  Du hast gewonnen! `);
-    console.log(chalk.green.bold`
+            console.log(chalk.green.bold`
               ★。　／　　｜　　＼。　★ 
                 。　☆。 　　。　　☆。    `);
-  } else {
-    console.log("  ");
-    console.log("  ");
-    console.log(
-      chalk.green.bold` ✿ஜீ۞ஜீ✿•.¸¸.•* Schade, vielleicht das nächste mal *•.¸¸.•✿ஜீ۞ஜீ✿`
-    );
-    console.log("  ");
-  }
-  console.log("  ");
-  const j = chalk.green.bold`j`;
-  const n = chalk.green.bold`n`;
-  const playAgain = prompt(
-    chalk.cyan
-      .bold`Möchtest du wieder mit mir spielen (${j} / ${n})? `
-  );
+
+        } else {
+            loseRounds++
+            console.log('  ');
+            console.log('  ');
+            console.log(chalk.green.bold`      ✿ஜீ۞ஜீ✿•.¸¸.•* Schade, vielleicht das nächste mal *•.¸¸.•✿ஜீ۞ஜீ✿`);
+            console.log('  ');
+        }
+        console.log('  ');
+        const j = chalk.green.bold`j`;
+        const n = chalk.green.bold`n`;
+        playAgain = prompt(chalk.cyan.bold`           Möchtest du wieder mit mir spielen (${j} / ${n})? `)
+        console.log('playAgain', playAgain);
+
+    }
+    
+
 }
+
+
+console.clear();
+console.log('  ');
+if (winRounds + loseRounds === 1) {
+    console.log(chalk.magentaBright.bold`           Von ${winRounds + loseRounds}er Runde hast du ${winRounds} gewonnen`); 
+    
+} else {
+    console.log(chalk.magentaBright.bold`           Von ${winRounds + loseRounds} Runden hast du ${winRounds} gewonnen`);
+}
+
+console.log(chalk.magentaBright.bold`           Bis bald ${gamerName}!`);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
