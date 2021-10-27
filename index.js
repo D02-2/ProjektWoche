@@ -163,9 +163,10 @@ while (playAgain === 'j') {
             loseRounds++
             console.log('  ');
             console.log('  ');
-            console.log(chalk.green.bold`      ✿ஜீ۞ஜீ✿•.¸¸.•* Schade, vielleicht das nächste mal *•.¸¸.•✿ஜீ۞ஜீ✿`);
+            console.log(chalk.green.bold`   ✿ஜீ۞ஜீ✿ (｡•́︿•̀｡) Schade, vielleicht das nächste mal *•.¸¸.•✿ஜீ۞ஜீ✿`);
             console.log('  ');
         }
+
         console.log('  ');
         const j = chalk.green.bold`j`;
         const n = chalk.green.bold`n`;
@@ -180,6 +181,7 @@ while (playAgain === 'j') {
 
 console.clear();
 console.log('  ');
+console.log('  ');
 if (winRounds + loseRounds === 1) {
     console.log(chalk.magentaBright.bold`           Von ${winRounds + loseRounds}er Runde hast du ${winRounds} gewonnen`); 
     
@@ -187,8 +189,10 @@ if (winRounds + loseRounds === 1) {
     console.log(chalk.magentaBright.bold`           Von ${winRounds + loseRounds} Runden hast du ${winRounds} gewonnen`);
 }
 
-console.log(chalk.magentaBright.bold`           Bis bald ${gamerName}!`);
-
+console.log('  ');
+console.log(chalk.cyanBright.bold`              (っ◔◡◔)っ Bis bald ${gamerName}!`);
+console.log('  ');
+console.log('  ');
 
 
 
