@@ -1,35 +1,3 @@
-<<<<<<< HEAD
-const prompt = require("prompt-sync")({ sigint: true });
-
-const chalk = require("chalk");
-
-const films = [
-  "Stars Wars",
-  "Forrest Gump",
-  "Schindlers Liste",
-  "The Dark Knight",
-  "Chihiros Reise ins Zauberland",
-  "The Green Mile",
-  "Das Leben der Anderen",
-  "Blade Runner",
-  "Zurück in die Zukunft",
-  "Jurassic Park",
-];
-const quizFilm = films[Math.round(Math.random() * 9)];
-
-const books = [
-  "Das Tagebuch der Anne Frank",
-  "Der Kleine Prinz",
-  "Das Geisterhaus",
-  "Der Graf von Monte Christo",
-  "Der kleine Hobbit",
-  "Der Glöckner von Notre Dame",
-  "Gullivers Reisen",
-  "Der Krieg der Welten",
-  "Auf der Suche nach der verlorenen Zeit",
-  "Herr der Fliegen",
-];
-=======
 // Variables........................
 
 const prompt = require('prompt-sync')({ sigint: true });
@@ -43,15 +11,9 @@ const books = ['Das Tagebuch der Anne Frank', 'Der Kleine Prinz', 'Das Geisterha
 // const quizBooks = books[Math.round(Math.random() * 9)];
 
 const emoji = `¯\\_(:/)_/¯`;
->>>>>>> 8f923fdee36fa1730e72296eda97ccb8674b70d2
 
 const emojiArr = ['¯', '\\', '_', '(', ':', '/', ')', '_', '/', '¯']
 
-<<<<<<< HEAD
-const emoji = `¯\\_(:/)_/¯`;
-
-const emojiArr = ["¯", "\\", "_", "(", ":", "/", ")", "_", "/", "¯"];
-=======
 let playAgain = 'j';
 
 let winRounds = 0;
@@ -77,7 +39,6 @@ const selectTitle = (arr) => {
 
 
 
->>>>>>> 8f923fdee36fa1730e72296eda97ccb8674b70d2
 
 
 
