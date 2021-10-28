@@ -131,9 +131,27 @@ function gameRepeat() {
 
     console.clear()
     return playAgain
-    }
+}
 
+function searchLetter(quizBookArray, guessLetter, emojiResultArr) {
 
+    const result = quizBookArray.map(letter => {
+        if (guessLetter.toLowerCase() === letter.toLowerCase()) {
+
+            return ` ${letter} `
+        } else if (letter !== ' ') {
+            return ' _ '
+
+        } else return ' '
+
+    })
+
+    const emojiFunction = emojiDisplay(quizBookArray, guessLetter, emojiResultArr);
+    console.log(chalk.magenta.bold`                       ${emojiFunction.join('')}`);
+    console.log('     ');
+
+    return result;
+}
 
 
 
@@ -172,45 +190,28 @@ while (playAgain === 'j') {
             console.log('   ');
             const guessLetter = prompt(chalk.green.bold`           Bitte gib einen Buchstaben ein `);
 
-            function searchLetter(arr, char) {
-
-                const result = arr.map(letter => {
-                    if (char.toLowerCase() === letter.toLowerCase()) {
-
-                        return ` ${letter} `
-                    } else if (letter !== ' ') {
-                        return ' _ '
-
-                    } else return ' '
-
-                })
-
-                const emojiFunction = emojiDisplay(quizBookArray, guessLetter, emojiResultArr);
-                console.log(chalk.magenta.bold`                       ${emojiFunction.join('')}`);
-                console.log('     ');
-
-                for (let i = 0; i < result.length; i++) {
-                    if (resultArr[i] !== result[i] && resultArr[i] === ' _ ') {
-                        resultArr[i] = result[i]
-
-                    }
+            console.clear();
+            const result = searchLetter(quizBookArray, guessLetter, emojiResultArr)
+            for (let i = 0; i < result.length; i++) {
+                if (resultArr[i] !== result[i] && resultArr[i] === ' _ ') {
+                    resultArr[i] = result[i]
 
                 }
 
-                return resultArr;
             }
-            console.clear();
+
+
             console.log('        ');
             console.log('        ');
             console.log('        ');
-            console.log(chalk.cyan.bold`          ${searchLetter(quizBookArray, guessLetter).join('')}`);
+            console.log(chalk.cyan.bold`          ${resultArr.join('')}`);
 
         }
 
         const resultRound = winLoose(resultArr, quizBookWithSpace, quizBook);
 
         playAgain = gameRepeat();
-        
+
     } else if (category.toLowerCase() === 'f') {
 
         const quizFilme = films[Math.round(Math.random() * films.length - 1)];
@@ -248,7 +249,7 @@ while (playAgain === 'j') {
 
                 const emojiFunction = emojiDisplay(quizFilmeArray, guessLetter1, emojiResultArr);
                 console.log(chalk.magenta.bold`                       ${emojiFunction.join('')}`);
-               
+
                 console.log('     ');
 
                 for (let i = 0; i < result.length; i++) {
@@ -271,7 +272,7 @@ while (playAgain === 'j') {
 
         const resultRound = winLoose(resultArr1, quizFilmeWithSpace, quizFilme)
         playAgain = gameRepeat();
-        
+
     }
 
 
