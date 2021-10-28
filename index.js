@@ -170,8 +170,7 @@ while (playAgain === 'j') {
         const j = chalk.green.bold`j`;
         const n = chalk.green.bold`n`;
         playAgain = prompt(chalk.cyan.bold`           Möchtest du wieder mit mir spielen (${j} / ${n})? `)
-        console.log('playAgain', playAgain);
-
+    
     }
 
 
