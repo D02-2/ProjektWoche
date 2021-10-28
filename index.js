@@ -18,6 +18,7 @@ let playAgain = 'j';
 
 let winRounds = 0;
 let loseRounds = 0;
+let gamerName='';
 
 const b = chalk.green.bold`b`;
 const f = chalk.green.bold`f`;
@@ -38,46 +39,53 @@ const selectTitle = (arr) => {
 }
 
 
+function welcome(){
+    console.clear();
+    console.log(chalk.cyan.bold`
+    
+                  。　☆ 。　　☆。　　☆ 
+                ★。　＼　　｜　　／。　★`);
+    console.log(chalk.green.bold`
+                 Willkommen zu Shrugman `);
+    
+    console.log(chalk.cyan.bold`
+                ★。　／　　｜　　＼。　★ 
+                  。　☆。 　　。　　☆。    `);
+    
+    
+    console.log(chalk.magenta.bold` 
+                      ${emoji} 
+                      `
+         );
+     gamerName = prompt(chalk.green.bold`                 Wie heißt du? `);
+
+    console.clear();
+    
+    
+};
+
+          
+
+
+
+
                                       /// *************** Spiel Anfang***************
 
-console.clear();
-
-console.log(chalk.cyan.bold`
-
-              。　☆ 。　　☆。　　☆ 
-            ★。　＼　　｜　　／。　★`);
-console.log(chalk.green.bold`
-             Willkommen zu Shrugman `);
-
-console.log(chalk.cyan.bold`
-            ★。　／　　｜　　＼。　★ 
-              。　☆。 　　。　　☆。    `);
-
-
-console.log(chalk.magenta.bold` 
-                  ${emoji} 
-                  `
-     );
-
-const gamerName = prompt(chalk.green.bold`                 Wie heißt du? `);
-console.clear();
-
+ welcome()
 
 while (playAgain === 'j') {
 
     console.log(chalk.cyan.bold`
                                    Hallo ${gamerName}
                                                      `);
-
-    let category = prompt(chalk.cyan.bold`           welche Kategorie möchtest du spielen: Bücher oder Filme (${b} / ${f})? `);                                           
+  
+    let category = prompt(chalk.cyan.bold`           welche Kategorie möchtest du spielen: Bücher oder Filme (${b} / ${f})? `)
     
 
     while (category.toLowerCase() !== 'b' && category.toLowerCase() !== 'f') {
         
         console.log(chalk.magenta.bold`           Bitte nur ${b} oder ${f} eingeben `);
-
-        
-        category = prompt(chalk.cyan.bold`           welche Kategorie möchtest du spielen: Bücher oder Filme (${b} / ${f})? `);
+        category = prompt(chalk.cyan.bold`           welche Kategorie möchtest du spielen: Bücher oder Filme (${b} / ${f})? `)
        
      }
 
