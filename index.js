@@ -69,13 +69,13 @@ function chooseCategory() {
     let category = prompt(chalk.cyan.bold`           welche Kategorie möchtest du spielen: Bücher oder Filme (${b} / ${f})? `)
 
 
-while (category.toLowerCase() !== 'b' && category.toLowerCase() !== 'f') {
+    while (category.toLowerCase() !== 'b' && category.toLowerCase() !== 'f') {
 
-    console.log(chalk.magenta.bold`           Bitte nur ${b} oder ${f} eingeben `);
-    category = prompt(chalk.cyan.bold`           welche Kategorie möchtest du spielen: Bücher oder Filme (${b} / ${f})? `)
+        console.log(chalk.magenta.bold`           Bitte nur ${b} oder ${f} eingeben `);
+        category = prompt(chalk.cyan.bold`           welche Kategorie möchtest du spielen: Bücher oder Filme (${b} / ${f})? `)
 
-}
-return category;
+    }
+    return category;
 }
 
 function emojiDisplay(arr, guess, emojiGArr) {
@@ -94,7 +94,7 @@ function emojiDisplay(arr, guess, emojiGArr) {
     return emojiGArr;
 }
 
-function winLoose(arr1, arr2, quizBook){
+function winLoose(arr1, arr2, quizItem) {
     if (arr1.join('') === arr2.join('')) {
         winRounds++
         console.log(chalk.green.bold`
@@ -109,12 +109,29 @@ function winLoose(arr1, arr2, quizBook){
     } else {
         loseRounds++
         console.log('  ');
-        console.log(chalk.magentaBright.bold`           Der gesuchte Title lautet: ${quizBook}`);
+        console.log(chalk.magentaBright.bold`           Der gesuchte Title lautet: ${quizItem}`);
         console.log('  ');
         console.log(chalk.green.bold`   ✿ஜீ۞ஜீ✿ (｡•́︿•̀｡) Schade, vielleicht das nächste mal *•.¸¸.•✿ஜீ۞ஜீ✿`);
         console.log('  ');
     }
 }
+
+function gameRepeat() {
+    console.log('  ');
+    const j = chalk.green.bold`j`;
+    const n = chalk.green.bold`n`;
+    let playAgain = prompt(chalk.cyan.bold`           Möchtest du wieder mit mir spielen (${j} / ${n})? `)
+
+    while (playAgain.toLowerCase() !== 'j' && playAgain.toLowerCase() !== 'n') {
+
+        console.log(chalk.magenta.bold`           Bitte nur ${j} oder ${n} eingeben `);
+        playAgain = prompt(chalk.cyan.bold`           Möchtest du wieder mit mir spielen (${j} / ${n})? `)
+
+    }
+
+    console.clear()
+    return playAgain
+    }
 
 
 
@@ -128,9 +145,9 @@ while (playAgain === 'j') {
 
     console.log(chalk.cyan.bold`
                                    Hallo ${gamerName}
-                                                     `);   
-    
-    
+                                                     `);
+
+
     const category = chooseCategory();
 
     if (category.toLowerCase() === 'b') {
@@ -156,10 +173,10 @@ while (playAgain === 'j') {
             const guessLetter = prompt(chalk.green.bold`           Bitte gib einen Buchstaben ein `);
 
             function searchLetter(arr, char) {
-                
+
                 const result = arr.map(letter => {
                     if (char.toLowerCase() === letter.toLowerCase()) {
-                       
+
                         return ` ${letter} `
                     } else if (letter !== ' ') {
                         return ' _ '
@@ -168,7 +185,7 @@ while (playAgain === 'j') {
 
                 })
 
-                const emojiFunction = emojiDisplay(quizBookArray, guessLetter,  emojiResultArr);
+                const emojiFunction = emojiDisplay(quizBookArray, guessLetter, emojiResultArr);
                 console.log(chalk.magenta.bold`                       ${emojiFunction.join('')}`);
                 console.log('     ');
 
@@ -186,25 +203,14 @@ while (playAgain === 'j') {
             console.log('        ');
             console.log('        ');
             console.log('        ');
-            console.log(chalk.cyan.bold`          ${searchLetter(quizBookArray, guessLetter).join('')}`); 
+            console.log(chalk.cyan.bold`          ${searchLetter(quizBookArray, guessLetter).join('')}`);
 
-        } 
-
-       const resultRound = winLoose(resultArr, quizBookWithSpace,quizBook)
-
-        console.log('  ');
-        const j = chalk.green.bold`j`;
-        const n = chalk.green.bold`n`;
-        playAgain = prompt(chalk.cyan.bold`           Möchtest du wieder mit mir spielen (${j} / ${n})? `)
-
-        while (playAgain.toLowerCase() !== 'j' && playAgain.toLowerCase() !== 'n') {
-
-            console.log(chalk.magenta.bold`           Bitte nur ${j} oder ${n} eingeben `);
-            playAgain = prompt(chalk.cyan.bold`           Möchtest du wieder mit mir spielen (${j} / ${n})? `)
-    
         }
 
-        console.clear()
+        const resultRound = winLoose(resultArr, quizBookWithSpace, quizBook);
+
+        playAgain = gameRepeat();
+        
     } else if (category.toLowerCase() === 'f') {
 
         const quizFilme = films[Math.round(Math.random() * films.length - 1)];
@@ -228,10 +234,10 @@ while (playAgain === 'j') {
             const guessLetter1 = prompt(chalk.green.bold`           Bitte gib einen Buchstaben ein `);
 
             function searchLetter(arr, char) {
-               
+
                 const result = arr.map(letter => {
                     if (char.toLowerCase() === letter.toLowerCase()) {
-                      
+
                         return ` ${letter} `
                     } else if (letter !== ' ') {
                         return ' _ '
@@ -239,10 +245,10 @@ while (playAgain === 'j') {
                     } else return ' '
 
                 })
-             
-                const emojiFunction = emojiDisplay(quizFilmeArray, guessLetter1,  emojiResultArr);
+
+                const emojiFunction = emojiDisplay(quizFilmeArray, guessLetter1, emojiResultArr);
                 console.log(chalk.magenta.bold`                       ${emojiFunction.join('')}`);
-                // console.log(chalk.magenta.bold`                       ${emojiResultArr.join('')}`);
+               
                 console.log('     ');
 
                 for (let i = 0; i < result.length; i++) {
@@ -263,38 +269,9 @@ while (playAgain === 'j') {
 
         }
 
-
-        if (resultArr1.join('') === quizFilmeWithSpace.join('')) {
-            winRounds++
-            console.log(chalk.green.bold`
-                        。　☆ 。　　☆。　　☆ 
-                      ★。　＼　　｜　　／。　★`);
-            console.log(chalk.magenta.bold`
-                         Du hast gewonnen! `);
-            console.log(chalk.green.bold`
-                      ★。　／　　｜　　＼。　★ 
-                        。　☆。 　　。　　☆。    `);
-
-        } else {
-            loseRounds++
-            console.log('  ');
-            console.log(chalk.magentaBright.bold`           Der gesuchte Title lautet: ${quizFilme}`);
-            console.log('  ');
-            console.log(chalk.green.bold`   ✿ஜீ۞ஜீ✿ (｡•́︿•̀｡) Schade, vielleicht das nächste mal *•.¸¸.•✿ஜீ۞ஜீ✿`);
-            console.log('  ');
-        }
-
-        console.log('  ');
-        const j = chalk.green.bold`j`;
-        const n = chalk.green.bold`n`;
-        playAgain = prompt(chalk.cyan.bold`           Möchtest du wieder mit mir spielen (${j} / ${n})? `)
-        while (playAgain.toLowerCase() !== 'j' && playAgain.toLowerCase() !== 'n') {
-
-            console.log(chalk.magenta.bold`           Bitte nur ${j} oder ${n} eingeben `);
-            playAgain = prompt(chalk.cyan.bold`           Möchtest du wieder mit mir spielen (${j} / ${n})? `)
-    
-        }
-        console.clear()
+        const resultRound = winLoose(resultArr1, quizFilmeWithSpace, quizFilme)
+        playAgain = gameRepeat();
+        
     }
 
 
