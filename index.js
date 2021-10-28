@@ -94,7 +94,27 @@ function emojiDisplay(arr, guess, emojiGArr) {
     return emojiGArr;
 }
 
+function winLoose(arr1, arr2, quizBook){
+    if (arr1.join('') === arr2.join('')) {
+        winRounds++
+        console.log(chalk.green.bold`
+                。　☆ 。　　☆。　　☆ 
+              ★。　＼　　｜　　／。　★`);
+        console.log(chalk.magenta.bold`
+                 Du hast gewonnen! `);
+        console.log(chalk.green.bold`
+              ★。　／　　｜　　＼。　★ 
+                。　☆。 　　。　　☆。    `);
 
+    } else {
+        loseRounds++
+        console.log('  ');
+        console.log(chalk.magentaBright.bold`           Der gesuchte Title lautet: ${quizBook}`);
+        console.log('  ');
+        console.log(chalk.green.bold`   ✿ஜீ۞ஜீ✿ (｡•́︿•̀｡) Schade, vielleicht das nächste mal *•.¸¸.•✿ஜீ۞ஜீ✿`);
+        console.log('  ');
+    }
+}
 
 
 
@@ -170,26 +190,7 @@ while (playAgain === 'j') {
 
         } 
 
-
-        if (resultArr.join('') === quizBookWithSpace.join('')) {
-            winRounds++
-            console.log(chalk.green.bold`
-                    。　☆ 。　　☆。　　☆ 
-                  ★。　＼　　｜　　／。　★`);
-            console.log(chalk.magenta.bold`
-                     Du hast gewonnen! `);
-            console.log(chalk.green.bold`
-                  ★。　／　　｜　　＼。　★ 
-                    。　☆。 　　。　　☆。    `);
-
-        } else {
-            loseRounds++
-            console.log('  ');
-            console.log(chalk.magentaBright.bold`           Der gesuchte Title lautet: ${quizBook}`);
-            console.log('  ');
-            console.log(chalk.green.bold`   ✿ஜீ۞ஜீ✿ (｡•́︿•̀｡) Schade, vielleicht das nächste mal *•.¸¸.•✿ஜீ۞ஜீ✿`);
-            console.log('  ');
-        }
+       const resultRound = winLoose(resultArr, quizBookWithSpace,quizBook)
 
         console.log('  ');
         const j = chalk.green.bold`j`;
