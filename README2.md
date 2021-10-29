@@ -50,12 +50,21 @@ siehe: 9\. 1.2 - 9.1.3
 
 Halte das Terminal clean über: console.clear() und fülle das Programm mit Farbe mit: chalk.
 
-## Examples
-
-Take a look at the examples:
-
+## Pseudocode
 
 ![Pseudo Code](img/pseudocode.png)
+
+## Beispiele
+
+![willkommen](img/willkommen.png)
+
+![gewonnen](img/gewonnen.png)
+
+![verloren](img/verloren.png)
+
+![gameOver](img/gameOver.png)
+
+
 
 
 
