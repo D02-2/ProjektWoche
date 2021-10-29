@@ -49,3 +49,14 @@ siehe: 9\. 1.2 - 9.1.3
 **Extras:**
 
 Halte das Terminal clean über: console.clear() und fülle das Programm mit Farbe mit: chalk.
+
+## Examples
+
+Take a look at the examples:
+
+
+![Pseudo Code](img/pseudocode.png)
+
+
+
+
