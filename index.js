@@ -25,6 +25,7 @@ const f = chalk.green.bold`f`;
 
 // functions .........................
 
+// Begrüßt den Besucher und fragt nach seinem Namen
 
 function welcome() {
     console.clear();
@@ -43,8 +44,7 @@ function welcome() {
     console.log('  ');
     console.log(chalk.magenta.bold` 
                       ${emoji} 
-                      `
-    );
+                      `);
     gamerName = prompt(chalk.green.bold`                    Wie heißt du? `);
 
     console.clear();
@@ -52,6 +52,7 @@ function welcome() {
 
 };
 
+// Der Titel wird in Platzhalter umgewandelt
 
 const selectTitle = (arr) => {
 
@@ -66,18 +67,23 @@ const selectTitle = (arr) => {
     return result;
 }
 
+// Der Spieler wird nach der Kategorie gefragt in der er spielen möchte 
+// unter der Bedingung zwischen den Buchstaben 'b' und 'f' zuwählen
+
 function chooseCategory() {
-    let category = prompt(chalk.cyan.bold`           welche Kategorie möchtest du spielen: Bücher oder Filme (${b} / ${f})? `)
+    let category = prompt(chalk.cyan.bold`           welche Kategorie möchtest du spielen: Bücher oder Filme (${b} / ${f})? `);
 
 
     while (category.toLowerCase() !== 'b' && category.toLowerCase() !== 'f') {
 
         console.log(chalk.magenta.bold`           Bitte nur ${b} oder ${f} eingeben `);
-        category = prompt(chalk.cyan.bold`           welche Kategorie möchtest du spielen: Bücher oder Filme (${b} / ${f})? `)
+        category = prompt(chalk.cyan.bold`           welche Kategorie möchtest du spielen: Bücher oder Filme (${b} / ${f})? `);
 
     }
     return category;
 }
+
+// Das Emoji wird visuell nachgebaut wenn ein falscher Buchstabe gewählt wird und gleichseitig werden die Fehlversuche weitergegeben
 
 function emojiDisplay(arr, guess, emojiGArr, noLetter) {
     let rightChar = false;
@@ -95,6 +101,8 @@ function emojiDisplay(arr, guess, emojiGArr, noLetter) {
     }
     return { 'r1': emojiGArr, 'r2': noLetter };
 }
+
+// Es wird angezeigt ob der Spieler gewonnen oder verloren hat . Wenn er verloren hat wird der gesuchte Titel ausgegeben
 
 function winLoose(arr1, arr2, quizItem) {
     if (arr1.join('') === arr2.join('')) {
@@ -120,22 +128,26 @@ function winLoose(arr1, arr2, quizItem) {
     }
 }
 
+// Der Spieler wird über 'j' und 'n' gefragt ob er nochmal spielen möchte
+
 function gameRepeat() {
     console.log('  ');
     const j = chalk.green.bold`j`;
     const n = chalk.green.bold`n`;
-    let playAgain = prompt(chalk.cyan.bold`           Möchtest du wieder mit mir spielen (${j} / ${n})? `)
+    let playAgain = prompt(chalk.cyan.bold`           Möchtest du wieder mit mir spielen (${j} / ${n})? `);
 
     while (playAgain.toLowerCase() !== 'j' && playAgain.toLowerCase() !== 'n') {
 
         console.log(chalk.magenta.bold`           Bitte nur ${j} oder ${n} eingeben `);
-        playAgain = prompt(chalk.cyan.bold`           Möchtest du wieder mit mir spielen (${j} / ${n})? `)
+        playAgain = prompt(chalk.cyan.bold`           Möchtest du wieder mit mir spielen (${j} / ${n})? `);
 
     }
 
-    console.clear()
-    return playAgain
+    console.clear();
+    return playAgain;
 }
+
+// Der Platzhalter wird mit dem richtigen Buchstaben ersetzt und wenn der Buchstabe falsch ist, fängt das Emoji an zu wachsen und die Felversuche werden ausgegeben
 
 function searchLetter(quizBookArray, guessLetter, emojiResultArr, noLetter) {
 
@@ -154,12 +166,14 @@ function searchLetter(quizBookArray, guessLetter, emojiResultArr, noLetter) {
     const emojiFunction = emojiDisplay(quizBookArray, guessLetter, emojiResultArr, noLetter);
 
     console.log(`                     `, chalk.green.bold`${emojiFunction.r1.join('')}`);
-    // console.log(`          `, chalk.green.bold`${emojiFunction.r1.join('')}      `, chalk.magenta.italic`Fehlversuche: ${emojiFunction.r2.join(' ')}`);
+   
     console.log('   ');
     console.log(chalk.magenta.italic`           Fehlversuche: ${emojiFunction.r2.join(' ')}`);
 
     return result;
 }
+
+// Wenn das Spiel verlassen wird, werden die gewonnenen und die verlorenen Runden angezeigt und der Spieler wird namentlich verabschiedet
 
 function gameOver() {
     console.clear();
@@ -194,8 +208,10 @@ function gameOver() {
 
 /// *************** Spiel Anfang***************
 
+
 welcome();
 
+// Während der Spieler wieder bestätigt läuft das Spiel
 while (playAgain === 'j') {
     console.log('  ');
     console.log(chalk.cyan.bold`
@@ -205,7 +221,7 @@ while (playAgain === 'j') {
 
     const category = chooseCategory();
 
-
+    // Categorie Bücher
     if (category.toLowerCase() === 'b') {
 
         const quizBook = books[Math.round(Math.random() * 9)];
@@ -224,13 +240,15 @@ while (playAgain === 'j') {
         let emojiResultArr = [];
         const quizBookWithSpace = quizBook.split('').map(char => ` ${char} `);
         let noLetter = [];
+
+        // Während das Emoji nicht fertig ist und der Titel nicht erraten wurde geht das Spiel weiter
         while (emojiResultArr.length < 10 && resultArr.join('') !== quizBookWithSpace.join('')) {
 
             console.log('   ');
             const guessLetter = prompt(chalk.green.bold`           Bitte gib einen Buchstaben ein `);
 
             console.clear();
-            const result = searchLetter(quizBookArray, guessLetter, emojiResultArr, noLetter)
+            const result = searchLetter(quizBookArray, guessLetter, emojiResultArr, noLetter);
             for (let i = 0; i < result.length; i++) {
                 if (resultArr[i] !== result[i] && resultArr[i] === ' _ ') {
                     resultArr[i] = result[i]
@@ -251,6 +269,7 @@ while (playAgain === 'j') {
 
         playAgain = gameRepeat();
 
+      // Categorie Filme  
     } else {
 
         const quizFilme = films[Math.round(Math.random() * 9)];
@@ -271,13 +290,14 @@ while (playAgain === 'j') {
         let noLetter = [];
         const quizFilmeWithSpace = quizFilme.split('').map(char => ` ${char} `);
 
+        // Während das Emoji nicht fertig ist und der Titel nicht erraten wurde geht das Spiel weiter
         while (emojiResultArr.length < 10 && resultArr1.join('') !== quizFilmeWithSpace.join('')) {
 
             console.log('   ');
             const guessLetter1 = prompt(chalk.green.bold`           Bitte gib einen Buchstaben ein `);
 
             console.clear();
-            const result = searchLetter(quizFilmeArray, guessLetter1, emojiResultArr, noLetter)
+            const result = searchLetter(quizFilmeArray, guessLetter1, emojiResultArr, noLetter);
             for (let i = 0; i < result.length; i++) {
                 if (resultArr1[i] !== result[i] && resultArr1[i] === ' _ ') {
                     resultArr1[i] = result[i]
@@ -306,7 +326,7 @@ while (playAgain === 'j') {
 
 gameOver();
 
-
+// Ende.....................................
 
 
 
